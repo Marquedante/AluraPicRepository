@@ -1,0 +1,41 @@
+Vamos entender nosso problema: quando photo-list.component.ts é carregado, o valor de photos é um array vazio. Porém, a busca de dados é uma operação assíncrona, e demora milésimos de segundo até ser executada e lançar um novo valor. Então, quando photos começa com um array vazio, no template (photo-list.component.html) o Data binding para ap-photos passa um array vazio também.
+
+Significa que photos está vazio e, na inicialização do componente, feita uma única vez, ele tentará acionar o groupColumns(). Será lançado um novo valor para o array em photo-list.component.ts, o qual automaticamente irá para photo-list.component.html, por conta do Data binding.
+
+Ou seja, apesar de o array de @Input() photos: Photo[] = [] em photo-list.component.ts está sendo atualizado, em nenhum momento estamos chamando this.groupColumns(). Ele só estava sendo chamado na inicialização do componente, e apenas uma vez. Precisamos chamá-lo toda vez que a propriedade da inbound property mudar.
+
+Sendo assim, ngOnInit() não nos servirá, e trocaremos a implementação do OnInit por OnChanges, não esquecendo de o deletarmos da lista de importes no começo do código de photos.component.ts. Usando a interface OnChanges, quando clicamos em PhotosComponent, o Visual Studio não nos permite implementar o método, mas se logo abaixo de constructor digitarmos ngOnChanges(), ele nos dará a opção de adicionarmos um método com este nome.
+
+Este método recebe como parâmetro todas as possíveis mudanças das inbound properties do nosso componente. Tais mudanças são do tipo SimpleChanges, que importaremos de angular/core. Caso haja alguma mudança, uma propriedade com mesmo nome da inbound property que sofreu a mudança será adicionada dinamicamente. Se não houver mudança, tampouco haverá propriedade.
+
+Vamos testar isso implementando if para o caso de haver mudanças especificamente na inbound property photos e, caso positivo, executaremos this.groupColumns() passando os novos dados das imagens. Testamos com photos pois poderemos ter várias propriedades, porém apenas uma delas sofrer alteração. É necessário testar cada propriedade da inbound property.
+
+export class PhotosComponent implements OnChanges {
+
+    @Input() photos: Photo[] = [];
+    rows: any[] = [];
+
+    constructor() { }
+
+    ngOnChanges(changes: SimpleChanges) {
+        if(changes.photos)
+            this.rows = this.groupColumns(this.photos);
+    }
+
+    groupColumns(photos: Photo[]) {
+        const newRows = [];
+
+        for(let index = 0; index < photos.length; index+=3) {
+            newRows.push(photos.slice(index, index + 3));
+        }
+        return newRows;
+    }
+}
+Cuidado: existe o tipo SimpleChange. Aqui, usamos o "Changes", no plural!
+
+Vamos salvar, voltar ao navegador, em que temos as imagens sendo exibidas. 
+Inspecionaremos esta estrutura no DOM, e teremos a <ol> com cada <li> contendo três <div>s, 
+exceto pela última, que contém duas. Conseguimos resolver a questão do grid, e evoluímos um pouco em termos
+ de criação de um componente, lidando com edges cases (problemas que raramente acontecem,
+ porém não são impossíveis) como este.
+

@@ -1,0 +1,12 @@
+
+Carregar o servidor:
+
+Entre na pasta "api" atraves do terminal do node.js e faça:
+
+npm start
+
+=============================================================
+
+Acessando recurso via browser:
+
+http://localhost:3000/flavio/photos

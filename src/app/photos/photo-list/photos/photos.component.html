@@ -1,0 +1,14 @@
+<p class="text-center text-muted" *ngIf="photos.length === 0">
+<!--  <p class="text-center text-muted" *ngIf="!photos.length"> // zero em javascript eh false qualquer outra coisa eh true-->
+  Sorry, no photos
+</p>
+
+<ol class="list-unstyled"> 
+  <li *ngFor="let cols of rows" class="row"><!-- aqui tenho todas as fatias de fotos --><!-- agora a li sera nossa linha -->
+                                            <!-- cada coluna tera tamanho 4 logo teremos 3 colunas -->
+       <div *ngFor="let ph of cols" class="col-4"><!-- aqui vamos iterar em cada fatia com 3 fotos-->
+         <app-photo [url]="ph.url" [descricao]="ph.description"></app-photo>
+       </div>
+  </li>
+</ol>
+<!-- a grid do bootstrap tem no maximo 12 colunas -->

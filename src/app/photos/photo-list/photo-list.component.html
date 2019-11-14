@@ -1,0 +1,29 @@
+
+<div class="text-center mt-3 mb-3">
+    <form>
+        <input
+            class="rounded"
+            type="search"
+            placeholder="search..."
+            autofocus
+            (keyup)="debounce.next($event.target.value)"> <!-- binding de eventos - unidirecional do template para o componente-->
+    </form>
+</div>
+
+{{ filter | uppercase }}
+
+<!-- neste componente listamos as fotos chamando o componente PhotoComponent -->
+<!-- aqui temos o data binding []  e uma diretiva *ngFor -->
+<!-- <app-photo *ngFor="let ph of photos" [url]="ph.url" [descricao]="ph.description"></app-photo> -->
+
+<!--
+    //REMOVIDO PARA photos.component.html
+    <ol class="list-unstyled row"> a ol sera uma linha 
+        <li *ngFor="let ph of photos" class="col-4"> cada coluna tera tamanho 4 logo teremos 3 colunas 
+            <app-photo [url]="ph.url" [descricao]="ph.description"></app-photo>
+        </li>
+    </ol>
+-->
+<!-- a grid do bootstrap tem no maximo 12 colunas -->
+
+<app-photos [photos]="phts | filterByDescription: filter"></app-photos><!-- utilizando pipe -->

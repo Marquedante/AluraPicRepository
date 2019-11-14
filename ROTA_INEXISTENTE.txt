@@ -1,0 +1,13 @@
+Acessar via browser:
+
+http://localhost:4200/user/flavio
+
+
+http://localhost:4200/p/add
+
+
+Rota Inexistente:
+
+http://localhost:4200/xpto/abc
+
+http://localhost:4200/qualquer/rota/veja/o/arquivo/approutingmodule

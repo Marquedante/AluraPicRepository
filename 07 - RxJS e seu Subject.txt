@@ -1,0 +1,4 @@
+AJAX significa Asynchronous JavaScript e XML. Em poucas palavras,
+é o uso do objeto XMLHttpRequest para se comunicar com os scripts do lado do servidor. 
+... Fazer requisições para o servidor sem recarregar a página. 
+Receber e trabalhar com dados do servidor.23 de mar de 2019
