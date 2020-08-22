@@ -1,0 +1,8 @@
+
+
+
+npm config set proxy http://USUARIO:SENHA@DOMINIO.DA.EMPRESA:PORTA
+
+npm config set https-proxy http://USUARIO:SENHA@DOMINIO.DA.EMPRESA:PORTA
+
+http://marcosmarques:senha@proxy.tjrj.jus.br:80

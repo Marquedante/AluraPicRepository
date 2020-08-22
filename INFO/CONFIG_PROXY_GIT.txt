@@ -1,0 +1,8 @@
+git config --global http.proxy http://username:senha@proxy_da_rede:PORTA
+git config --global http.proxy http://marcosmarques:senha@proxy.tj.rj.gov.br:80
+
+
+http://tjerj265vm.tj.rj.gov.br:8080/tfs/tjerj/DIPOC/_git/DISTRIBUICAOELETRONICA
+
+
+http://tjerj265vm:8080/tfs/TJERJ/DIPOC/_git/DISTRIBUICAOELETRONICA

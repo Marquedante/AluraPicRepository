@@ -1,0 +1,179 @@
+
+
+usuario:postgres
+senha:123
+
+http://localhost/phppgadmin/
+
+http://ip_da_maquina/phppgadmin/
+
+psql ==> utilitario utilizado para gerenciar o banco de dados postgresql
+
+ESTUDO POSTGRES:
+
+sudo install postgresql postgresql-contrib   //instalando dois pacotes
+
+sudo -u postgres psql postgres   //entrando no terminal psql com o usuario padrao postgres
+
+postgres# \l     //dentro do terminal - listando os bancos
+
+postgres# \dg    //dentro do terminal - lista os usuarios
+
+postgres# \dt    //dentro do terminal - lista as tabelas do banco de dados
+
+postgres# \d    //dentro do terminal - lista as tabelas do banco de dados
+
+postgres# \password    //dentro do terminal - alterar senha
+
+postgres# \connect nome_do_bando_de_dados    //dentro do terminal - conecta-se a um banco de dados
+
+postgres# \c nome_do_bando_de_dados  //dentro do terminal - conecta-se a um banco de dados
+
+postgres# \dS //dentro do terminal - exibes as tabelas e outros objetos dos sistema postgresql
+
+sudo -u postgres createuser -D -A -P fabio  //fora do terminal - criando usuario
+
+sudo -u postgres createdb -O fabio dbTeste //fora do terminal - criando banco de dados de nome dbTeste para o usuario fabio 
+
+//para o usuario ter acesso o banco tem que ter o mesmo nome do usuario
+sudo -u postgres createdb -O fabio fabio //fora do terminal - criando banco de dados de nome dbTeste para o usuario fabio 
+
+postgres# DROP DATABASE nome_do_banco_de_dados //dentro do terminal - deletar banco de dados
+
+postgres# DROP USER nome_do_usuario //dentro do terminal - deletar usuario
+ 
+sudo service postgresql status | start | stop | restart
+
+sudo systemctl restart postgresql   //reinicia o servico assumindo as alteracoes dos arquivos de configuracao exemplo: pg_hba.conf
+
+>sudo vim /etc/postgresql/11/main/postgresql.conf  //arquivo de configuracao - alterar para receber requisicoes de outras maquinas da rede
+
+>sudo apt-get install phpgadmin  //instalando o pgadmin
+
+Obs.: os comandos executados dentro do psql devem iniciar com:     \
+
+////////////////////////////////////////////////// CONFIGURACAO NECESSARIO PARA ACESSARMOS O PGADMIN A PARTIR DE OUTRA MAQUINA //////////////////////////////////////
+
+>sudo vim /etc/apache2/conf-avaliable/phppgadmin.conf    //arquivo de configuracao -  acrescente a linha: allow from all
+
+>sudo vim /etc/apache2/apache2.conf    //insira a linha:  Include /etc/apache2/conf-avaliable/phppgadmin.conf
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+postgres# \h   //exibe todos os comando sql disponiveis
+
+postgres# \h create role //exibe informacoes de um comando sql especifico no caso create role
+
+postgres# \?   //exibe os comandos de gerenciamento do plsql
+
+postgres# \du //lista os usuarios
+
+postgres# \!    //mudamos agora para o terminal de usuario
+>              //podemos agora efetuar normalmente comandos do linux
+>exit        //voltaremos agora para o terminal plsql
+postgres#
+
+//ou sem sair do terminal psql podemos emitir comandos linux entao faça:
+postgres# \! pwd
+
+// # ==> informa que estamos com um super usuario
+
+postgres# \conninfo   //exibe informacoes do usuario que esta logado no momento
+
+sudo -i -u postgres   //logando-se no terminal  do linux com o usuario postgres //voce ainda nao esta no psql
+
+
+Obs.: pg_hba.conf  ==> arquivo de ajuste para exigir senha ao entrar no psql com usuario postgres 
+
+//Se a configuracao de acesso no arquivo pg_hba.conf for peer entao basta ter apenas um usuario cadastrado no PostgreSql
+//para ter acesso ao banco de dados e nao sera exigido senha, mas logicamente o mesmo dever ser registrado em pg_hba.conf,
+//porem ser a configuracao no arquivo pg_hba.conf for md5 sera exigodo senha.
+Exemplo:
+TYPE						DATABASE                  USER                      ADDRESS                 METHOD     
+Local                        all                                 postgres                                                    md5
+Local                        all                                 fabio                                                          peer
+
+
+postgres# show hba_file;   //exibe o caminho onde esta o arquivo hba_file.conf este arquivo eh utilizado para ajustar a exigencia de senha para o usuario postgres
+
+>sudo vim /etc/postgresql/11/main/pg_hba.conf   //arquivo utilizado para ajusta a exigencia de senha para o usuario postgres ao tentar acessar o psql
+
+marcos@marcos:~$ psql -U postgres     //utilize o psql utilizando o usuario postgres
+
+postgres@marcos:$             //voce esta dentro do banco de dados logo eh possivel utilizar comandos para criar tabelas e usuarios
+//postgres ==> super-usuario criado durante a instalacao do postgresql logo o mesmo e o gerenciador do postgresql
+
+postgres@marcos:$  psql -U postgres -d db_aula   //usuario postgres conectando com o banco de dados de nome db_aula
+
+
+Perceba que teremos dois usuarios um para o linux chamado postgres e outro para o psql tambem com o nome postgres.
+logo teremos apenas um que assumira os dois papeis.
+
+
+postgres@marcos:$  psql - - version
+
+postgres@marcos:$  psql - - help
+
+postgres#  \h     //verificando todos os comandos disponivies
+
+postgres# \h createuser
+
+COMANDO PARA LIMPAR TELA NO PSQL: ctrl + l
+
+marcos@marcos$  psql -U postgres -d db_aula  //o usuario postgres acessara diretamente o banco de dados db_aula apos digitar a senha
+
+INVOCANDO MANUAL
+postgres@marcos:$ man createuser   //obteremos informaçoes sobre as opcoes deste comando
+
+postgres@marcos:$ createuser -dPs diogo  //criando usuario com privilegio de super-usuario (- s) , exige senha ( - P) e    (- d)
+
+==========================================================================================================================
+
+REMOVENDO PACOTE(S)
+
+sudo dpkg -l | grep -i NOME_DO_PACOTE
+sudo apt --purge remove -y NOME_DO_PACOTE_I    NOME_DO_PACOTE_II    NOME_DO_PACOTE_III         ......................      NOME_DO_PACOTE_XXXX
+sudo psql  //verificando se realmente foi removido
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+

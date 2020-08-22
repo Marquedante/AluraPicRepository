@@ -1,0 +1,35 @@
+
+1) COMITAR - FAZER PULL - FAZER PUSH - RESOLVER CONFLITOS SE NECESSARIO
+
+2) git pull origin develop_angular8
+
+3)
+
+=======================MERGE ESTRATEGIA I===========================
+
+FAZER MERGE DA BRANCH B PARA BRANCH A - POREM VOCE ESTA NA BRANCH B
+
+1) FAÇA SWITCH PARA A BRANCH 'A'
+
+2) ATUALIZE A BRANCH 'A' - FAZENDO PULL
+
+2) FAÇA: git pull origin B  //PEGANDO O QUE ESTA NA BRANCH 'B' E LEVANDO PARA 'A'
+
+3) FAÇA: git commit
+
+4) FAÇA: git push
+
+=======================MERGE ESTRATEGIA II===========================
+FAZER MERGE DA SUA BRANCH LOCAL PARA BRANCH DEVELOPER - POREM VOCE ESTA NA BRANCH LOCAL
+
+1) FAÇA SWITCH PARA A BRANCH 'DEVELOPER'
+
+2) ATUALIZE A BRANCH 'DEVELOPER' - FAZENDO PULL
+
+3) VOLTE PARA A SUA BRANCH LOCAL
+
+4) FAÇA: git merge developer  //PEGANDO O QUE ESTA NA BRANCH 'developer' E LEVANDO PARA 'a sua branch local'
+
+3) FAÇA: git status
+
+4) FAÇA: git push

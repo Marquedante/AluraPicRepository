@@ -1,0 +1,43 @@
+
+Git:
+
+Listar configurações:
+
+>git config --list
+
+=============================
+
+Removendo proxy errado do Git:
+
+>git config --global --unset http.proxy
+>git config --global http.sslVerify false
+
+//git config --global --unset https.proxy
+//git config --global https.sslVerify false 
+
+=============================
+
+Inserindo proxy no Git:
+
+>git config --global http.proxy http://username:password@proxiURL:proxiPort
+//git config --global https.proxy http://username:password@proxiURL:proxiPort
+
+
+==============================================================================
+
+Visual Code:
+
+1) Clique no fork
+2) clique no sinal de + (para jogar na stage area)
+3) verifique se vc foi o ultima a comitar 
+==> sim, entao faça:
+commit
+push
+==>nao, entao faça:
+pull
+==>resolva conflitos caso haja
+push
+==============================================================================
+
+
+
